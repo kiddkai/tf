@@ -1,0 +1,11 @@
+#!/bin/sh
+
+echo "aws profiles:"
+
+while IFS='' read -r line || [[ -n "$line" ]]; do
+  echo "${line}" | grep -q "^\[" && echo "    ${line}"
+done < "${HOME}/.aws/credentials"
+
+printf "plz choose a profile to setup env(name only): "
+
+read profile
